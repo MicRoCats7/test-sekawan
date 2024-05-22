@@ -48,7 +48,7 @@ export function CardLogin() {
                 </form>
                 <Button
                     className="w-full h-[55px] bg-blue-500 hover:bg-blue-900"
-                    onClick={() => navigate('/dashboard')}
+                    onClick={() => navigate('/dashboard/overview')}
                 >
                     Log in
                 </Button>

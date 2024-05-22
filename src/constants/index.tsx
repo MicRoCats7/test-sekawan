@@ -8,42 +8,42 @@ import { GiAchievement } from "react-icons/gi";
 export const SidebarLinks = [
     {
         label: 'Overview',
-        route: '/overview',
+        route: '/dashboard/overview',
         Icon: <FaChartPie />,
     },
     {
         label: 'Tickets',
-        route: '/tickets',
+        route: '/dashboard/tickets',
         Icon: <FaTicketAlt />
     },
     {
         label: 'Ideas',
-        route: '/ideas',
+        route: '/dashboard/ideas',
         Icon: <PiLampPendantBold />
     },
     {
         label: 'Contacts',
-        route: '/contacts',
+        route: '/dashboard/contact',
         Icon: <MdGroups />
     },
     {
         label: 'Agents',
-        route: '/agents',
+        route: '/dashboard/agents',
         Icon: <IoPerson />
     },
     {
         label: 'Articles',
-        route: '/articles',
+        route: '/dashboard/articles',
         Icon: <MdArticle />
     },
     {
         label: 'Settings',
-        route: '/settings',
+        route: '/dashboard/setting',
         Icon: <IoIosSettings />
     },
     {
         label: 'Subscriptions',
-        route: '/subscriptions',
+        route: '/dashboard/subscription',
         Icon: <GiAchievement />
     },
-]
+];
