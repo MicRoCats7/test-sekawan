@@ -12,26 +12,23 @@ import { Badge } from "../ui/badge"
 const invoices = [
     {
         invoice: "INV001",
-        paymentStatus: "Paid",
         totalAmount: "Urgent",
-        paymentMethod: "Waiting on Feature Request",
+        paymentMethod: "Finish ticket Update",
     },
     {
         invoice: "INV002",
-        paymentStatus: "Pending",
         totalAmount: "New",
-        paymentMethod: "Awaiting Customer Response",
+        paymentMethod: "Create new tiket example",
     },
     {
         invoice: "INV003",
-        paymentStatus: "Unpaid",
         totalAmount: "Default",
-        paymentMethod: "Awaiting Developer Fix",
+        paymentMethod: "Update tiket report",
     }
 ]
 
 export function TableTask() {
-    const [selectedInvoice, setSelectedInvoice] = useState<string | null>(null);
+    const [selectedInvoice, setSelectedInvoice] = useState<string | undefined>(undefined);
 
     return (
         <Table>

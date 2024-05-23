@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
     Table,
     TableBody,
@@ -8,110 +10,79 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import PaginationTicket from "./Pagination";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import moment from "moment";
+import { PopupButtonDetail } from "./PopupButtonDetail";
+import { useTranslation } from "react-i18next";
 
-const invoices = [
-    {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
-        priority: "HIGH",
-    },
-    {
-        invoice: "INV002",
-        paymentStatus: "Pending",
-        totalAmount: "$150.00",
-        paymentMethod: "PayPal",
-        priority: "LOW",
-    },
-    {
-        invoice: "INV003",
-        paymentStatus: "Unpaid",
-        totalAmount: "$350.00",
-        paymentMethod: "Bank Transfer",
-        priority: "HIGH",
-    },
-    {
-        invoice: "INV004",
-        paymentStatus: "Paid",
-        totalAmount: "$450.00",
-        paymentMethod: "Credit Card",
-        priority: "NORMAL",
-    },
-    {
-        invoice: "INV005",
-        paymentStatus: "Paid",
-        totalAmount: "$550.00",
-        paymentMethod: "PayPal",
-        priority: "HIGH",
-    },
-    {
-        invoice: "INV006",
-        paymentStatus: "Pending",
-        totalAmount: "$200.00",
-        paymentMethod: "Bank Transfer",
-        priority: "NORMAL",
-    },
-    {
-        invoice: "INV007",
-        paymentStatus: "Unpaid",
-        totalAmount: "$300.00",
-        paymentMethod: "Credit Card",
-        priority: "LOW",
-    },
-];
+interface Ticket {
+    id: string;
+    profilePic: string;
+    ticketDetails: string;
+    username: string;
+    createdAt: any;
+    date: any;
+    priority: 'high' | 'normal' | 'low';
+}
 
-export function TableTicket() {
+export function TableTicket({ ticketData, onDetailClick, isDialogOpen, setIsDialogOpen, darkMode, userData }: any) {
+    const { t } = useTranslation();
+    const userRole = userData[0].role;
+
     return (
         <div className="overflow-x-auto">
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px] text-gray-400" colSpan={3}>Ticket details</TableHead>
-                        <TableHead className="text-gray-400">Customer Name</TableHead>
-                        <TableHead className="text-gray-400">Date</TableHead>
-                        <TableHead className="text-right text-gray-400">Priority</TableHead>
-                        <TableHead className="text-right text-gray-400">Actions</TableHead>
+                        <TableHead className="w-[100px] text-gray-400" colSpan={3}>{t('ticket.ticket_details')}</TableHead>
+                        <TableHead className="text-gray-400">{t('ticket.customer_name')}</TableHead>
+                        <TableHead className="text-gray-400">{t('ticket.date')}</TableHead>
+                        <TableHead className="text-right text-gray-400">{t('ticket.priority')}</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {invoices.map((invoice) => (
-                        <TableRow key={invoice.invoice}>
+                    {ticketData.map((ticket: Ticket, index: number) => (
+                        <TableRow key={index}>
                             <TableCell className="font-medium" colSpan={3}>
                                 <div className="flex items-center gap-3">
                                     <Avatar>
-                                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                        <AvatarImage src={ticket.profilePic} alt="@shadcn" />
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                     <div className="flex flex-col items-start gap-1">
-                                        <span>Jones Ferdinand</span>
-                                        <p className="text-gray-300 font-normal text-xs">Updated 1 day ago</p>
+                                        <span>{ticket.ticketDetails}</span>
+                                        <p className="text-gray-300 font-normal text-xs">{moment(ticket.createdAt.toDate()).fromNow()}</p>
                                     </div>
                                 </div>
                             </TableCell>
                             <TableCell>
                                 <div className="flex flex-col items-start gap-1">
-                                    <span>Jones Ferdinand</span>
-                                    <p className="text-gray-300 font-normal text-xs">on 24.05.2019</p>
+                                    <span>{ticket.username}</span>
+                                    <p className="text-gray-300 font-normal text-xs">on {moment(ticket.date.toDate()).format('MMMM D, YYYY')}</p>
                                 </div>
                             </TableCell>
                             <TableCell>
                                 <div className="flex flex-col items-start gap-1">
-                                    <span>May 26, 2019</span>
-                                    <p className="text-gray-300 font-normal text-xs">6.30 PM</p>
+                                    <span>{moment(ticket.date.toDate()).format('MMMM D, YYYY')}</span>
+                                    <p className="text-gray-300 font-normal text-xs">{moment.utc(ticket.date.toDate()).format('HH:mm')}</p>
                                 </div>
                             </TableCell>
                             <TableCell className="text-right">
                                 <Badge
-                                    className={invoice.priority === "HIGH" ? "bg-red-500 text-white" : invoice.priority === "NORMAL" ? "bg-green-500 text-white" : "bg-yellow-500 text-white"}
-                                >{invoice.totalAmount}
+                                    className={ticket.priority === "high" ? "bg-red-500 text-white uppercase" : ticket.priority === "normal" ? "bg-green-500 text-white uppercase" : "bg-yellow-500 text-white uppercase"}
+                                >{ticket.priority}
                                 </Badge>
                             </TableCell>
                             <TableCell className="text-right">
-                                <BsThreeDotsVertical />
+                                <PopupButtonDetail onDetailClick={() =>
+                                    onDetailClick(ticket)}
+                                    ticketId={ticket.id}
+                                    isDialogOpen={isDialogOpen}
+                                    setIsDialogOpen={setIsDialogOpen}
+                                    darkMode={darkMode}
+                                    userRole={userRole}
+                                />
                             </TableCell>
                         </TableRow>
                     ))}
@@ -127,4 +98,3 @@ export function TableTicket() {
         </div>
     );
 }
-

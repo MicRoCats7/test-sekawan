@@ -1,0 +1,48 @@
+{
+ "login": {
+    "title": "Dashboard Kit",
+    "subtitle": "Log In to Dashboard Kit",
+    "description": "Enter your email and password below",
+    "email": "Email",
+    "password": "Password",
+    "login": "Log in",
+    "forgot": "Forgot Password?",
+    "dont_have_account": "Don't have an account?",
+    "signup": " Sign Up",
+    "error": "An error occurred while logging in.",
+    "login_success": "Login successful!",
+    "login_error": "Login failed. Please check your email and password."
+    },
+    "overview": {
+        "today_trend": "Today's trends",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "resolved": "Resolved",
+        "received": "Received",
+        "unresolved": "Unresolved tickets",
+        "view_detail": "View Details",
+        "view_all": "View All",
+        "group": "Group",
+        "support": "Support",
+        "task": "Task",
+        "create_task": "Create new task"
+    },
+    "ticket": {
+        "all_ticket": "All Tickets",
+        "sortby": "Sort by date",
+        "create_ticket": "Create Ticket",
+        "ticket_details": "Ticket Details",
+        "date": "Date",
+        "priority": "Priority",
+        "filter": "Filter",
+        "customer_name": "Customer Name",
+        "detail_ticket": "Detail Ticket",
+        "approve": "Approve",
+        "reject": "Reject",
+        "detail": "Detail",
+        "delete": "Delete",
+        "descriptionDelete": "Are you sure you want to delete this ticket?",
+        "yes": "Yes",
+        "no": "No"
+    }   
+}

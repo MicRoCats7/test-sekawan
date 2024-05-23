@@ -27,6 +27,6 @@
       ]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/lib/firebase-config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -8,6 +8,15 @@
   font-family: "Poppins", sans-serif;
 }
 
+.dark {
+  background-color: #1a202c;
+  color: white;
+}
+
+.dark-text {
+  color: white;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

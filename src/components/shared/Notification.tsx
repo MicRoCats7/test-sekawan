@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { FaBell } from "react-icons/fa"
 import {
     Popover,
@@ -6,7 +8,7 @@ import {
 } from "@/components/ui/popover"
 import { Card } from "../ui/card"
 
-export function Notification() {
+export function Notification({ darkMode }: any) {
     return (
         <Popover>
             <PopoverTrigger>
@@ -15,19 +17,19 @@ export function Notification() {
             <PopoverContent className="flex flex-col gap-3">
                 <Card>
                     <div className="p-4">
-                        <h1 className="text-sm font-semibold text-gray-700">Notification</h1>
+                        <h1 className={`text-sm font-semibold ${darkMode ? 'dark-text' : 'text-gray-700'}`}>Notification</h1>
                         <p className="text-xs text-gray-500">You have 3 unread notification</p>
                     </div>
                 </Card>
                 <Card>
                     <div className="p-4">
-                        <h1 className="text-sm font-semibold text-gray-700">Notification</h1>
+                        <h1 className={`text-sm font-semibold ${darkMode ? 'dark-text' : 'text-gray-700'}`}>Notification</h1>
                         <p className="text-xs text-gray-500">You have 3 unread notification</p>
                     </div>
                 </Card>
                 <Card>
                     <div className="p-4">
-                        <h1 className="text-sm font-semibold text-gray-700">Notification</h1>
+                        <h1 className={`text-sm font-semibold ${darkMode ? 'dark-text' : 'text-gray-700'}`}>Notification</h1>
                         <p className="text-xs text-gray-500">You have 3 unread notification</p>
                     </div>
                 </Card>
