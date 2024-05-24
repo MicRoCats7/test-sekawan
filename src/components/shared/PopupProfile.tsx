@@ -4,8 +4,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { Switch } from "../ui/switch";
-import { Label } from "../ui/label";
 
 interface PopupProfileProps {
     profileImage: string;
@@ -30,8 +28,14 @@ export function PopupProfile({ profileImage, username, role, darkMode, toggleDar
                     <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Role : <span className="font-bold">{role}</span></p>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <Switch id="light/dark" checked={darkMode} onChange={toggleDarkMode} />
-                    <Label htmlFor="light/dark">Light/Dark</Label>
+                    <label htmlFor="darkModeSwitch">Dark Mode</label>
+                    <input
+                        id="darkModeSwitch"
+                        type="checkbox"
+                        checked={darkMode}
+                        onChange={toggleDarkMode}
+                        className="w-5 h-5 rounded-full"
+                    />
                 </div>
             </PopoverContent>
         </Popover>

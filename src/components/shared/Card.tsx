@@ -35,10 +35,16 @@ export function CardLogin() {
             const querySnapshot = await getDocs(q);
 
             if (querySnapshot.size === 1) {
+                const userData = querySnapshot.docs[0].data();
                 toast.success(t('login.login_success'));
-                navigate('/dashboard/overview');
-                const data = querySnapshot.docs.map(doc => doc.data());
-                localStorage.setItem('loggedInUserData', JSON.stringify(data));
+
+                if (userData.role === 'admin') {
+                    navigate('/dashboard/overview');
+                } else if (userData.role === 'guest') {
+                    navigate('/dashboard/tickets');
+                }
+
+                localStorage.setItem('loggedInUserData', JSON.stringify([userData]));
             } else {
                 toast.error(t('login.login_error'));
             }

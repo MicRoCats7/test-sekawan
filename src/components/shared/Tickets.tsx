@@ -74,7 +74,7 @@ function Tickets({ username, profileImage, role, userData, darkMode, toggleDarkM
 
         switch (sortOption) {
             case "date":
-                return filteredTickets.sort((a, b) => b.date.toDate().getTime() - a.date.toDate().getTime());
+                return filteredTickets.sort((a, b) => b.date?.toDate()?.getTime() - a.date?.toDate()?.getTime());
             case "priority": {
                 const priorityOrder: { [key in Ticket['priority']]: number } = { high: 1, normal: 2, low: 3 };
                 return filteredTickets.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);

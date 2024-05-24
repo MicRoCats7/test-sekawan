@@ -26,6 +26,8 @@ export function Popupdetailticket({ userData, isDialogOpen, setIsDialogDetailOpe
     const [approve, setApprove] = useState<any>(userData?.approve);
     const [reject, setReject] = useState<any>(userData?.approve);
     const role = userRole[0].role;
+    const [approveLoading, setApproveLoading] = useState(false);
+    const [rejectLoading, setRejectLoading] = useState(false);
 
     const updateTicketStatus = async (ticketId: string, statusUpdate: any) => {
         try {
@@ -38,13 +40,17 @@ export function Popupdetailticket({ userData, isDialogOpen, setIsDialogDetailOpe
     };
 
     const handleApprove = async () => {
+        setApproveLoading(true);
         await updateTicketStatus(userData.id, { approve: true, reject: false });
+        setApproveLoading(false);
         setIsDialogDetailOpen(false);
         toast.success('Ticket Approved Successfully!!');
     };
 
     const handleReject = async () => {
+        setRejectLoading(true);
         await updateTicketStatus(userData.id, { approve: false, reject: true });
+        setRejectLoading(false);
         setIsDialogDetailOpen(false);
         toast.error('Ticket Rejected !!');
     };
@@ -84,12 +90,12 @@ export function Popupdetailticket({ userData, isDialogOpen, setIsDialogDetailOpe
                     </div>
                 </div>
                 <DialogFooter>
-                    {role === 'quest' && (
+                    {role === 'admin' && (
                         <>
                             {approve === false && reject === false && (
                                 <>
-                                    <Button onClick={handleApprove} className={`bg-blue-500 ${darkMode ? 'dark-text' : ''}`}>{t('ticket.approve')}</Button>
-                                    <Button onClick={handleReject} className={`bg-red-500 ${darkMode ? 'dark-text' : ''}`}>{t('ticket.reject')}</Button>
+                                    <Button onClick={handleApprove} className={`bg-blue-500 ${darkMode ? 'dark-text' : ''}`}>{approveLoading ? "Loading..." : t('ticket.approve')}</Button>
+                                    <Button onClick={handleReject} className={`bg-red-500 ${darkMode ? 'dark-text' : ''}`}>{rejectLoading ? "Loading..." : t('ticket.reject')}</Button>
                                 </>
                             )}
                         </>

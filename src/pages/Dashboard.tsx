@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 function Dashboard() {
     const [username, setUsername] = useState("");
     const [profileImage, setProfileImage] = useState("");
-    const [role, setrole] = useState("");
+    const [role, setRole] = useState("");
     const userData = localStorage.getItem('loggedInUserData');
     const loggedInUserData = userData ? JSON.parse(userData) : null;
     const [darkMode, setDarkMode] = useState(() => {
@@ -22,22 +22,21 @@ function Dashboard() {
     });
 
     useEffect(() => {
-        const userData = localStorage.getItem('loggedInUserData');
-        if (userData) {
-            const loggedInUserData = JSON.parse(userData);
-            const loggedInUser = loggedInUserData.find((user: { email: string }) =>
-                user.email === "guest@gmail.com" || user.email === "admin@gmail.com"
-            );
+        if (loggedInUserData && Array.isArray(loggedInUserData)) {
+            const loggedInUser = loggedInUserData.find((user) => user.email === "guest@gmail.com" || user.email === "admin@gmail.com");
             if (loggedInUser) {
                 setUsername(loggedInUser.username);
                 setProfileImage(loggedInUser.profileImg);
-                setrole(loggedInUser.role);
+                setRole(loggedInUser.role);
             }
         }
-    }, []);
+    }, [loggedInUserData]);
 
     useEffect(() => {
+        // Mengatur darkMode ke localStorage
         localStorage.setItem('darkMode', JSON.stringify(darkMode));
+
+        // Mengubah kelas pada elemen root HTML
         if (darkMode) {
             document.documentElement.classList.add('dark');
         } else {
@@ -46,7 +45,8 @@ function Dashboard() {
     }, [darkMode]);
 
     const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
+        // Memperbarui darkMode dengan nilai yang terbalik
+        setDarkMode(prevMode => !prevMode);
     };
 
     return (

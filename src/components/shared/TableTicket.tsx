@@ -52,20 +52,20 @@ export function TableTicket({ ticketData, onDetailClick, isDialogOpen, setIsDial
                                     </Avatar>
                                     <div className="flex flex-col items-start gap-1">
                                         <span>{ticket.ticketDetails}</span>
-                                        <p className="text-gray-300 font-normal text-xs">{moment(ticket.createdAt.toDate()).fromNow()}</p>
+                                        <p className="text-gray-300 font-normal text-xs">{moment(ticket.createdAt?.toDate()).fromNow()}</p>
                                     </div>
                                 </div>
                             </TableCell>
                             <TableCell>
                                 <div className="flex flex-col items-start gap-1">
                                     <span>{ticket.username}</span>
-                                    <p className="text-gray-300 font-normal text-xs">on {moment(ticket.date.toDate()).format('MMMM D, YYYY')}</p>
+                                    <p className="text-gray-300 font-normal text-xs">on {moment(ticket.date?.toDate()).format('MMMM D, YYYY')}</p>
                                 </div>
                             </TableCell>
                             <TableCell>
                                 <div className="flex flex-col items-start gap-1">
-                                    <span>{moment(ticket.date.toDate()).format('MMMM D, YYYY')}</span>
-                                    <p className="text-gray-300 font-normal text-xs">{moment.utc(ticket.date.toDate()).format('HH:mm')}</p>
+                                    <span>{moment(ticket.date?.toDate()).format('MMMM D, YYYY')}</span>
+                                    <p className="text-gray-300 font-normal text-xs">{moment.utc(ticket.date?.toDate()).format('HH:mm')}</p>
                                 </div>
                             </TableCell>
                             <TableCell className="text-right">

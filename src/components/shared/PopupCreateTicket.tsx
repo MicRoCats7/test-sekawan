@@ -24,8 +24,24 @@ export function PopupCreateTicket({ userData, isDialogOpen, setIsDialogOpen, dar
     const [ticketDetails, setTicketDetails] = useState("");
     const [date, setDate] = useState<Date | null>(null);
     const [priority, setPriority] = useState<any>("");
+    const [errors, setErrors] = useState({
+        ticketDetails: false,
+        date: false,
+        priority: false,
+    });
 
     const handleCreateTicket = async () => {
+        const newErrors = {
+            ticketDetails: !ticketDetails,
+            date: !date,
+            priority: !priority,
+        };
+        setErrors(newErrors);
+
+        if (!ticketDetails || !date || !priority) {
+            toast.error("Please fill in all fields.");
+            return;
+        }
         try {
             const ticketData = {
                 ticketDetails: ticketDetails,
@@ -64,18 +80,21 @@ export function PopupCreateTicket({ userData, isDialogOpen, setIsDialogOpen, dar
                             {t('ticket.ticket_details')}
                         </Label>
                         <Input id="name" value={ticketDetails} onChange={(e) => setTicketDetails(e.target.value)} className="col-span-3" />
+                        {errors.ticketDetails && <span className="text-red-500">{t('ticket.error_required')}</span>}
                     </div>
                     <div className="flex flex-col items-start gap-4">
                         <Label htmlFor="username" className="text-right">
                             {t('ticket.date')}
                         </Label>
                         <DatePicker selected={date} onChange={(date: Date | null) => setDate(date)} />
+                        {errors.date && <span className="text-red-500">{t('ticket.error_required')}</span>}
                     </div>
                     <div className="flex flex-col items-start gap-4">
                         <Label htmlFor="username" className="text-right">
                             {t('ticket.priority')}
                         </Label>
                         <SelectDemo setPriority={setPriority} />
+                        {errors.priority && <span className="text-red-500">{t('ticket.error_required')}</span>}
                     </div>
                 </div>
                 <DialogFooter>

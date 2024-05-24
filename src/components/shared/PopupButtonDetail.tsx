@@ -57,7 +57,7 @@ export function PopupButtonDetail({ onDetailClick, ticketId, darkMode, userRole 
                     </Button>
                     <Dialog open={isDeleteConfirmOpen} onOpenChange={setIsDeleteConfirmOpen}>
                         <DialogTrigger asChild>
-                            {userRole === 'quest' && (
+                            {userRole === 'admin' && (
                                 <Button className={`bg-red-500 flex items-center gap-1 ${darkMode ? 'dark-text' : ''}`} onClick={handleDeleteClick}>
                                     <FaRegTrashAlt />
                                     {t('ticket.delete')}

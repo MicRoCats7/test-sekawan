@@ -32,6 +32,7 @@ export function DatePicker({ selected, onChange }: any) {
                     selected={selected}
                     onSelect={date => onChange(date)}
                     initialFocus
+                    required
                 />
             </PopoverContent>
         </Popover>
