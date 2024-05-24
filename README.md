@@ -12,4 +12,6 @@ Password: Pass1234!
 Email: guest@gmail.com
 Password: Pass1234!
 
+Link Github : https://github.com/MicRoCats7/test-sekawan
+
 Api for get data, post, update, using firebase, for CSS framework using Tailwind CSS and for component framework using ShadCN
